@@ -1,0 +1,42 @@
+{
+  "index": "/index.html",
+  "assetGroups": [{
+    "name": "app",
+    "installMode": "prefetch",
+    "resources": {
+      "files": [
+        "/**/*.html",
+        "/**/*.css",
+        "/**/*.ts",
+        "/**/*.js",
+        "/favicon.ico",
+        "/index.html",
+        "/*.css",
+        "/*.js"
+      ]
+    }
+  }, {
+    "name": "assets",
+    "installMode": "lazy",
+    "updateMode": "prefetch",
+    "resources": {
+      "files": [
+        "/assets/**"
+      ]
+    }
+  }],
+  "dataGroups": [
+    {
+      "name": "angular-jestergest-new",
+      "urls": [
+        "/angular-jestergest-new/products.json",
+        "/angular-jestergest-new/products/view/:id.json",
+        "/angular-jestergest-new/clients.json",
+        "/angular-jestergest-new/clients/view/:id.json"
+      ],
+      "cacheConfig": {
+        "strategy": "performance"
+      }
+    }
+  ]
+}

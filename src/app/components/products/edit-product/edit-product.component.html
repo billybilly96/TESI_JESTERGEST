@@ -1,0 +1,121 @@
+<app-navbar></app-navbar>
+<div class="page-header flex-container">
+  <h1 class="page-title"> {{getPageTitle()}} </h1>
+</div> 
+<div *ngIf="product" class="table-container">
+  <form [formGroup]="getProductForm()" (ngSubmit)="updateProduct()" class="form">
+    <mat-accordion color="primary" class="example-headers-align">
+      <mat-label>Prodotto · Articoli</mat-label>
+      <mat-expansion-panel hideToggle="true" class="first">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Codice
+          </mat-panel-title>
+          <mat-panel-description> {{product.code}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>         
+        <mat-form-field>
+          <input [(ngModel)]="product.code" formControlName="code" name="code" matInput placeholder="Codice" required>
+          <mat-error>Devi inserire un valore!</mat-error>
+        </mat-form-field>
+      </mat-expansion-panel>
+      <mat-expansion-panel hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Nome
+          </mat-panel-title>
+          <mat-panel-description> {{product.name}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>         
+        <mat-form-field>
+          <input [(ngModel)]="product.name" formControlName="name" name="name" matInput placeholder="Nome" required>
+          <mat-error>Devi inserire un valore!</mat-error>
+        </mat-form-field>
+      </mat-expansion-panel>
+      <mat-expansion-panel hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Codice a Barre
+          </mat-panel-title>
+          <mat-panel-description> {{product.barcode}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>         
+        <mat-form-field>
+            <input [(ngModel)]="product.barcode" formControlName="barcode" name="barcode" matInput placeholder="Codice a Barre" >
+        </mat-form-field>
+      </mat-expansion-panel>
+      <mat-expansion-panel hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Stato
+          </mat-panel-title>
+          <mat-panel-description> {{product.status}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>         
+        <mat-form-field>
+          <mat-select [(ngModel)]="product.status" formControlName="status" name="status" placeholder="Stato" required>
+            <mat-option value="1">Disponibile</mat-option>
+            <mat-option value="2">Non disponibile</mat-option>
+          </mat-select>
+          <mat-error>Devi inserire un valore!</mat-error>
+        </mat-form-field>
+      </mat-expansion-panel>
+      <mat-expansion-panel hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Unità di Misura
+          </mat-panel-title>
+          <mat-panel-description> {{product.measurement_unit}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>         
+        <mat-form-field>
+          <mat-select [(ngModel)]="product.measurement_unit" formControlName="measurement_unit" name="measurement_unit" placeholder="Unità di Misura">
+            <mat-option value="1">Pz (Pezzi)</mat-option>
+            <mat-option value="2">Kg (Kilogrammi)</mat-option>
+            <mat-option value="3">Lt (Litri)</mat-option>
+            <mat-option value="4">n (Numero)</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-expansion-panel>
+      <mat-expansion-panel hideToggle="true" class="last">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Quantità Minima Stock
+          </mat-panel-title>
+          <mat-panel-description> {{product.stock_minimum_quantity}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>         
+        <mat-form-field>
+          <input [(ngModel)]="product.stock_minimum_quantity" formControlName="stock_minimum_quantity" name="stock_minimum_quantity" matInput placeholder="Quantità Minima Stock">
+        </mat-form-field>
+      </mat-expansion-panel>
+    </mat-accordion> 
+    <mat-accordion color="primary" class="example-headers-align">
+      <mat-label>Note</mat-label>
+      <mat-expansion-panel hideToggle="true" class="first">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Descrizione
+          </mat-panel-title>
+          <mat-panel-description> {{product.description}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>         
+        <mat-form-field>
+          <input [(ngModel)]="product.description" formControlName="description" name="description" matInput placeholder="Descrizione">             
+        </mat-form-field>
+      </mat-expansion-panel>
+      <mat-expansion-panel hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Note aggiuntive
+          </mat-panel-title>
+          <mat-panel-description> {{product.notes}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>         
+        <mat-form-field>
+          <input [(ngModel)]="product.notes" formControlName="notes" name="notes" matInput placeholder="Note aggiuntive">             
+        </mat-form-field>
+      </mat-expansion-panel>   
+      <div id="div-spinner">
+        <button mat-raised-button color="warn" type="submit" [disabled]="getProductForm().invalid" class="button">
+          Salva
+        </button>
+        <mat-spinner *ngIf="getLoading()" color="primary" [diameter]="80"></mat-spinner>
+      </div>            
+  </mat-accordion>
+    </form>
+</div>
+
+

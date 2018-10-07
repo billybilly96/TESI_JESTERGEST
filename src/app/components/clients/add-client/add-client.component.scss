@@ -1,0 +1,33 @@
+.button {
+    float: right;
+    font-size: 30px;
+    margin: 20px 0px;
+    padding: 10px 60px;
+    text-transform: uppercase;
+}
+.form {
+    width: 100%;
+}
+.form-container {
+    align-items: stretch;  
+    background: #fff;
+    box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(18, 17, 17, 0.12);
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 20px;
+}
+.mat-checkbox {
+    align-self: flex-start;
+}
+mat-label {
+    font-size: 22px;
+    margin-bottom: 13.5px;
+}
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 25px;
+    padding-right: 16px;
+}
+#div-spinner {
+    margin-top: 20px;
+}

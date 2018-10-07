@@ -1,0 +1,105 @@
+<app-navbar></app-navbar>
+<div class="page-header flex-container">
+  <h1 class="page-title"> {{getPageTitle()}} </h1>
+</div> 
+<div *ngIf="client" class="flex-container">
+  <form [formGroup]="getClientForm()" (ngSubmit)="updateClient()" class="form">
+    <mat-accordion color="primary" class="example-headers-align">
+      <mat-label>Cliente</mat-label>
+      <mat-expansion-panel hideToggle="true" class="first">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Codice
+          </mat-panel-title>
+          <mat-panel-description> {{client.code}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>         
+        <mat-form-field>
+          <input [(ngModel)]="client.code" formControlName="code" name="code" matInput placeholder="Codice" required>
+          <mat-error>Devi inserire un valore!</mat-error>
+        </mat-form-field>
+      </mat-expansion-panel>
+      <mat-expansion-panel hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> AKA
+          </mat-panel-title>
+          <mat-panel-description> {{client.aka}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>         
+        <mat-form-field>
+          <input [(ngModel)]="client.aka" formControlName="aka" name="aka" matInput placeholder="AKA">
+        </mat-form-field>
+      </mat-expansion-panel>
+      <mat-expansion-panel hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Nome
+          </mat-panel-title>
+          <mat-panel-description> {{client.first_name}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>         
+        <mat-form-field>
+          <input [(ngModel)]="client.first_name" formControlName="first_name" name="first_name" matInput placeholder="Nome">
+        </mat-form-field>
+      </mat-expansion-panel>
+      <mat-expansion-panel hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Cognome
+          </mat-panel-title>
+          <mat-panel-description> {{client.last_name}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>         
+        <mat-form-field>
+          <input [(ngModel)]="client.last_name" formControlName="last_name" name="last_name" matInput placeholder="Cognome">
+        </mat-form-field>
+      </mat-expansion-panel>
+      <mat-expansion-panel hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Codice Fiscale
+          </mat-panel-title>
+          <mat-panel-description> {{client.codice_fiscale}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>         
+        <mat-form-field>
+            <input [(ngModel)]="client.codice_fiscale" formControlName="codice_fiscale" name="codice_fiscale" matInput placeholder="Codice Fiscale" >
+        </mat-form-field>
+      </mat-expansion-panel>
+      <mat-expansion-panel hideToggle="true" class="last">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Stato
+          </mat-panel-title>
+          <mat-panel-description> {{client.status}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>         
+        <mat-form-field>
+          <mat-select [(ngModel)]="client.status" formControlName="status" name="status" placeholder="Stato">
+            <mat-option value="1">Non Attivo</mat-option>
+            <mat-option value="2">Attivo</mat-option>
+          </mat-select>
+          <mat-error>Devi inserire un valore!</mat-error>
+        </mat-form-field>
+      </mat-expansion-panel>     
+    </mat-accordion> 
+    <mat-accordion color="primary" class="example-headers-align">
+      <mat-label>Note</mat-label>
+      <mat-expansion-panel hideToggle="true" class="first">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Note aggiuntive
+          </mat-panel-title>
+          <mat-panel-description> {{client.notes}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>         
+        <mat-form-field>
+          <input [(ngModel)]="client.notes" formControlName="notes" name="notes" matInput placeholder="Note aggiuntive">             
+        </mat-form-field>
+      </mat-expansion-panel>
+      <div id="div-spinner">
+        <button mat-raised-button color="warn" type="submit" [disabled]="getClientForm().invalid" class="button">
+          Salva
+        </button>
+        <mat-spinner *ngIf="getLoading()" color="primary" [diameter]="80"></mat-spinner>
+      </div>             
+  </mat-accordion>
+    </form>
+</div>
+
+
+

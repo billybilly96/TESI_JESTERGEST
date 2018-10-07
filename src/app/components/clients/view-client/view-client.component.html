@@ -1,0 +1,93 @@
+<app-navbar></app-navbar>
+<div class="page-header flex-container">
+  <div style="flex: 1;"></div>
+  <h1 class="page-title"> {{getPageTitle()}} </h1>
+  <a mat-raised-button class="btn-go-create" color="primary" routerLink="/clients/edit/{{getID()}}">
+    <i class="material-icons">create</i> Modifica Cliente
+  </a>
+</div> 
+<div *ngIf="getClientData()" class="flex-container">
+  <mat-toolbar>
+    <mat-toolbar-row class="label-title" *ngIf="getClientData().type == 'Azienda'">
+      <mat-label>{{getClientData().code}} {{getClientData().aka}}</mat-label>
+    </mat-toolbar-row>
+    <mat-toolbar-row class="label-title" *ngIf="getClientData().type == 'Persona Fisica'">
+      <mat-label>{{getClientData().code}} {{getClientData().last_name}} {{getClientData().first_name}}</mat-label>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+      <span>Codice:</span>
+      <span class="spacer"></span>
+      <span class="value"> {{getClientData().code}} </span>
+    </mat-toolbar-row>      
+    <mat-toolbar-row>
+      <span>Tipo:</span>
+      <span class="spacer"></span>
+      <span class="value"> {{getClientData().type}} </span>
+    </mat-toolbar-row>     
+    <mat-toolbar-row>
+      <span>Stato:</span>
+      <span class="spacer"></span>
+      <span class="value"> {{getClientData().status}} </span>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+      <span>AKA:</span>
+      <span class="spacer"></span>
+      <span class="value"> {{getClientData().aka}} </span>
+    </mat-toolbar-row>
+    <mat-toolbar-row *ngIf="getClientData().type == 'Azienda'">
+      <span>Azienda:</span>
+      <span class="spacer"></span>
+      <span class="value"> {{getClientData().company_name}} </span>
+    </mat-toolbar-row>
+    <mat-toolbar-row *ngIf="getClientData().type == 'Persona Fisica'">
+        <span>Persona Fisica:</span>
+        <span class="spacer"></span>
+        <span class="value"> {{getClientData().last_name}} {{getClientData().first_name}} </span>
+      </mat-toolbar-row>
+    <mat-toolbar-row *ngIf="getClientData().type == 'Azienda'">
+      <span>Partita IVA:</span>
+      <span class="spacer"></span>
+      <span class="value"> {{getClientData().partita_iva}} </span>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+      <span>Codice Fiscale:</span>
+      <span class="spacer"></span>
+      <span class="value"> {{getClientData().codice_fiscale}} </span>
+    </mat-toolbar-row>
+    <mat-toolbar-row *ngIf="getClientData().type == 'Persona Fisica'">
+      <span>Data di Nascita:</span>
+      <span class="spacer"></span>
+      <span class="value"> {{getClientData().birthday}} </span>
+    </mat-toolbar-row>
+    <mat-toolbar-row *ngIf="getClientData().type == 'Azienda'">
+      <span>Referente:</span>
+      <span class="spacer"></span>
+      <span class="value"> {{getClientData().referent}} </span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+<div *ngIf="getClientData()" class="flex-container">
+  <mat-toolbar id="last">
+    <mat-toolbar-row class="label-title">
+      <mat-label>Interno</mat-label>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+      <span>Note aggiuntive:</span>
+      <span class="spacer"></span>
+      <span class="value"> {{getClientData().notes}} </span>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+      <span>Creato il:</span>
+      <span class="spacer"></span>
+      <span class="value"> {{getClientData().created}} </span>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+      <span>Ultima Modifica il:</span>
+      <span class="spacer"></span>
+      <span class="value"> {{getClientData().modified}} </span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+
+
+

@@ -1,0 +1,57 @@
+<app-navbar></app-navbar>
+<div class="page-header flex-container">
+  <div style="flex: 1;"></div>
+  <h1 class="page-title"> {{getPageTitle()}} </h1>
+  <a mat-raised-button class="btn-go-create" color="primary" routerLink="/clients/add">
+    <i class="material-icons">add</i> Aggiungi Cliente
+  </a>
+</div>
+<div class="div-filter flex-container">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtra per Codice, Nome, Dati Fiscali, Contatti...">
+  </mat-form-field>
+</div>
+<div class="table-container mat-elevation-z8">
+  <table mat-table [dataSource]="getDataSource()" matSort > 
+    <ng-container matColumnDef="code">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Codice </th>
+      <td mat-cell *matCellDef="let client"> {{client.code}} </td>
+    </ng-container>  
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cliente </th>
+      <td mat-cell *matCellDef="let client"> {{client.company_name}} {{client.last_name}} {{client.first_name}}</td>
+    </ng-container>
+    <ng-container matColumnDef="referent">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Referente </th>
+      <td mat-cell *matCellDef="let client"> {{client.referent}} </td>
+    </ng-container>  
+    <ng-container matColumnDef="contacts_count">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Contatti principali </th>
+      <td mat-cell *matCellDef="let client"> {{client.contacts_count}} </td>
+    </ng-container>   
+    <ng-container matColumnDef="address_count">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Sede Legale </th>
+      <td mat-cell *matCellDef="let client"> {{client.address_count}} </td>
+    </ng-container>           
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell class="actions" *matHeaderCellDef mat-sort-header> Azioni </th>
+      <td mat-cell class="actions" *matCellDef="let client">
+        <a matTooltip="Vedi" matTooltipPosition="above" mat-mini-fab color="primary" routerLink="/clients/view/{{client.id}}">
+          <i class="material-icons">remove_red_eye</i>
+        </a>
+        <a matTooltip="Modifica" matTooltipPosition="above" mat-mini-fab color="accent" routerLink="/clients/edit/{{client.id}}">
+          <i class="material-icons">create</i>
+        </a>                    
+        <a matTooltip="Elimina" matTooltipPosition="above" mat-mini-fab color="warn" (click)="openDialog(client.id)">
+          <i class="material-icons">delete_forever</i>
+        </a>
+      </td>
+    </ng-container>     
+    <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>
+    <tr mat-row *matRowDef="let client; columns: getDisplayedColumns();">
+    </tr>
+  </table>     
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [showFirstLastButtons]="true"></mat-paginator>
+</div> 
+
+

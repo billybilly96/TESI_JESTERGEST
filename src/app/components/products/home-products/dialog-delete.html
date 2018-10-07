@@ -1,0 +1,11 @@
+<div mat-dialog-content>
+    <p style="text-align:center; font-weight: bold;">Sei sicuro di voler eliminare il prodotto {{ getProductID() }}?</p>
+</div>
+<div mat-dialog-actions style="justify-content:center">
+    <a mat-raised-button color="accent" (click)="deleteProduct()">
+        <i class="material-icons">thumb_up</i> SI 
+    </a>
+    <button mat-raised-button color="primary" (click)="onNoClick()">
+        <i class="material-icons">thumb_down</i> NO 
+    </button>
+</div>

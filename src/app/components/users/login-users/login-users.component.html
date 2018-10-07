@@ -1,0 +1,44 @@
+<div id="body">
+  <form [formGroup]="login_form" (ngSubmit)="login()">
+    <mat-grid-list cols="3">
+      <mat-grid-tile></mat-grid-tile>
+      <mat-grid-tile class='login-element'>
+        <div class="login-container">
+          <div class="login-box-header">
+            <p class="title">GESTIONALE</p>
+            <p class="title-name">Mazapégul</p>
+          </div>
+          <div class="login-box-body">
+            <mat-grid-list cols="9" rowHeight="75px">
+              <mat-grid-tile [rowspan]="1" class="login-icon">
+                <mat-icon class="icon">lock</mat-icon>
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]="7">
+                <mat-form-field class="justifier">
+                  <input matInput formControlName="email" name="email" placeholder="Email" required>
+                  <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+                </mat-form-field>
+              </mat-grid-tile>
+            </mat-grid-list>
+            <mat-grid-list cols="9" rowHeight="100px">
+              <mat-grid-tile [rowspan]="1" class="login-icon">
+                <mat-icon class="icon">remove_red_eye</mat-icon>
+              </mat-grid-tile>
+              <mat-grid-tile [colspan]="7">
+                <mat-form-field class="justifier">
+                  <input matInput formControlName="password" name="password" placeholder="Password" [type]="hide ? 'password' : 'text'" required>
+                  <mat-icon id="eye" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                  <mat-error>Devi inserire un valore</mat-error>
+                </mat-form-field>
+              </mat-grid-tile>
+            </mat-grid-list>
+            <button mat-raised-button [disabled]="login_form.invalid" [disabled]="loading" class="login-button">
+              <mat-icon>input</mat-icon> ENTRA
+            </button>
+          </div>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile></mat-grid-tile>
+    </mat-grid-list>
+  </form>
+</div>

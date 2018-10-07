@@ -1,0 +1,72 @@
+<app-navbar></app-navbar>
+<div class="page-header flex-container">
+    <div style="flex: 1;"></div>
+    <h1 class="page-title"> {{getPageTitle()}} </h1>
+    <a mat-raised-button class="btn-go-create" color="primary" routerLink="/products/edit/{{getID()}}">
+      <i class="material-icons">create</i> Modifica Prodotto
+    </a>
+  </div> 
+  <div *ngIf="getProductData()" class="flex-container">
+    <mat-toolbar>
+      <mat-toolbar-row class="label-title">
+        <mat-label>{{getProductData().code}} {{getProductData().name}}</mat-label>
+      </mat-toolbar-row>
+      <mat-toolbar-row>
+        <span>Codice:</span>
+        <span class="spacer"></span>
+        <span class="value"> {{getProductData().code}} </span>
+      </mat-toolbar-row>      
+      <mat-toolbar-row>
+        <span>Nome:</span>
+        <span class="spacer"></span>
+        <span class="value"> {{getProductData().name}} </span>
+      </mat-toolbar-row>     
+      <mat-toolbar-row>
+        <span>Codice a Barre:</span>
+        <span class="spacer"></span>
+        <span class="value"> {{getProductData().barcode}} </span>
+      </mat-toolbar-row>
+      <mat-toolbar-row>
+        <span>Stato:</span>
+        <span class="spacer"></span>
+        <span class="value"> {{getProductData().status}} </span>
+      </mat-toolbar-row>
+      <mat-toolbar-row>
+        <span>Unità di Misura:</span>
+        <span class="spacer"></span>
+        <span class="value"> {{getProductData().measurement_unit}} </span>
+      </mat-toolbar-row>
+      <mat-toolbar-row>
+        <span>Quantità Minima Stock:</span>
+        <span class="spacer"></span>
+        <span class="value"> {{getProductData().stock_minimum_quantity}} </span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+  <div *ngIf="getProductData()" class="flex-container">
+    <mat-toolbar id="last">
+      <mat-toolbar-row class="label-title">
+        <mat-label>Interno</mat-label>
+      </mat-toolbar-row>
+      <mat-toolbar-row>
+        <span>Descrizione:</span>
+        <span class="spacer"></span>
+        <span class="value"> {{getProductData().description}} </span>
+      </mat-toolbar-row>
+      <mat-toolbar-row>
+        <span>Note aggiuntive:</span>
+        <span class="spacer"></span>
+        <span class="value"> {{getProductData().notes}} </span>
+      </mat-toolbar-row>
+      <mat-toolbar-row>
+        <span>Creato il:</span>
+        <span class="spacer"></span>
+        <span class="value"> {{getProductData().created}} </span>
+      </mat-toolbar-row>
+      <mat-toolbar-row>
+        <span>Ultima Modifica il:</span>
+        <span class="spacer"></span>
+        <span class="value"> {{getProductData().modified}} </span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>

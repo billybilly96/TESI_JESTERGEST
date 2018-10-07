@@ -1,0 +1,62 @@
+<app-navbar></app-navbar>
+<div class="page-header flex-container">
+    <h1 class="page-title"> {{getPageTitle()}} </h1>
+</div>
+<div class="table-container">
+    <form [formGroup]="getPriceListForm()" (ngSubmit)="addPriceList()" class="form">
+      <div class="form-container">
+        <mat-label>Listino Prezzi</mat-label>
+        <mat-form-field>
+          <input formControlName="code" name="code" matInput placeholder="Codice" required>
+          <mat-error>Devi inserire un valore</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="name" name="name" matInput placeholder="Nome" required>
+          <mat-error>Devi inserire un valore</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select formControlName="default_price_type" name="default_price_type" placeholder="Tipo prezzo di default" required>
+            <mat-option value="1">Prezzo netto</mat-option>
+            <mat-option value="2">Prezzo lordo</mat-option>
+          </mat-select>
+          <mat-error>Devi inserire un valore</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-container">
+        <mat-label>Validità</mat-label>
+        <mat-form-field>
+            <mat-select formControlName="scope" name="scope" placeholder="Validità" required>
+              <mat-option value="1">Ecommerce+Offline</mat-option>
+              <mat-option value="2">Ecommerce</mat-option>
+              <mat-option value="2">Offline</mat-option>
+            </mat-select>
+            <mat-error>Devi inserire un valore</mat-error>
+          </mat-form-field>
+        <mat-form-field>
+            <input matInput [matDatepicker]="picker" formControlName="valid_from" name="valid_from" placeholder="Valido da">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [matDatepicker]="picker2" formControlName="valid_to" name="valid_to" placeholder="Valido fino a">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #picker2></mat-datepicker>
+        </mat-form-field>
+      </div>        
+      <div class="form-container">
+        <mat-label>Note</mat-label>
+        <mat-form-field hintLabel="Questo testo comparirà in documenti o pagine web pubbliche.">
+          <input formControlName="description" name="description" matInput placeholder="Descrizione">
+        </mat-form-field>
+        <mat-form-field hintLabel="Questo testo non comparirà in documenti o pagine web pubbliche.">
+          <input formControlName="notes" name="notes" matInput placeholder="Note aggiuntive">
+        </mat-form-field>
+      </div>
+      <div id="div-spinner">
+        <button class="button" mat-raised-button color="warn" type="submit" [disabled]="getPriceListForm().invalid">
+          Salva
+        </button>
+        <mat-spinner *ngIf="getLoading()" color="primary" [diameter]="80"></mat-spinner>
+      </div>    
+    </form>
+  </div>

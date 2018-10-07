@@ -1,0 +1,57 @@
+<app-navbar></app-navbar>
+<div class="page-header flex-container">
+    <div style="flex: 1;"></div>
+    <h1 class="page-title"> {{getPageTitle()}} </h1>
+    <a mat-raised-button class="btn-go-create" color="primary" routerLink="/price-lists/edit/{{getID()}}">
+      <i class="material-icons">create</i> Modifica Listino
+    </a>
+  </div> 
+  <div *ngIf="getPriceListData()" class="flex-container">
+    <mat-toolbar>
+      <mat-toolbar-row class="label-title">
+        <mat-label>{{getPriceListData().code}} {{getPriceListData().name}}</mat-label>
+      </mat-toolbar-row>
+      <mat-toolbar-row>
+        <span>Codice:</span>
+        <span class="spacer"></span>
+        <span class="value"> {{getPriceListData().code}} </span>
+      </mat-toolbar-row>      
+      <mat-toolbar-row>
+        <span>Validità:</span>
+        <span class="spacer"></span>
+        <span class="value"> {{getPriceListData().scope}} {{getPriceListData().valid_from}} {{getPriceListData().valid_to}} </span>
+      </mat-toolbar-row>     
+      <mat-toolbar-row>
+        <span>Tipo prezzo di default:</span>
+        <span class="spacer"></span>
+        <span class="value"> {{getPriceListData().default_price_type}} </span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+  <div *ngIf="getPriceListData()" class="flex-container">
+    <mat-toolbar id="last">
+      <mat-toolbar-row class="label-title">
+        <mat-label>Interno</mat-label>
+      </mat-toolbar-row>
+      <mat-toolbar-row>
+        <span>Descrizione:</span>
+        <span class="spacer"></span>
+        <span class="value"> {{getPriceListData().description}} </span>
+      </mat-toolbar-row>
+      <mat-toolbar-row>
+        <span>Note aggiuntive:</span>
+        <span class="spacer"></span>
+        <span class="value"> {{getPriceListData().notes}} </span>
+      </mat-toolbar-row>
+      <mat-toolbar-row>
+        <span>Creato il:</span>
+        <span class="spacer"></span>
+        <span class="value"> {{getPriceListData().created}} </span>
+      </mat-toolbar-row>
+      <mat-toolbar-row>
+        <span>Ultima Modifica il:</span>
+        <span class="spacer"></span>
+        <span class="value"> {{getPriceListData().modified}} </span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>

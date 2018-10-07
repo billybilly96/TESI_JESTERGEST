@@ -1,0 +1,68 @@
+<app-navbar></app-navbar>
+<div class="page-header flex-container">
+  <h1 class="page-title"> {{getPageTitle()}} </h1>
+</div>
+  <div class="table-container">
+    <form [formGroup]="getClientForm()" (ngSubmit)="addClient()" class="form">
+      <div class="form-container">
+        <mat-label>Cliente</mat-label>
+        <mat-radio-group formControlName="type" name="type" placeholder="Tipo" required>
+          <mat-radio-button color="primary" value="1">Azienda</mat-radio-button>
+          <mat-radio-button color="primary" value="2">Persona Fisica</mat-radio-button>
+        </mat-radio-group>
+        <mat-form-field>
+          <input formControlName="code" name="code" matInput placeholder="Codice" required>
+          <mat-error>Devi inserire un valore</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select formControlName="status" name="status" placeholder="Stato">
+            <mat-option value="1">Attivo</mat-option>
+            <mat-option value="2">Non Attivo</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="aka" name="aka" matInput placeholder="AKA">
+        </mat-form-field>
+        <mat-form-field *ngIf="getClientForm().value.type == 1">
+          <input formControlName="company_name" name="company_name" matInput placeholder="Azienda">
+        </mat-form-field>
+        <mat-form-field *ngIf="getClientForm().value.type == 1">
+          <input formControlName="partita_iva" name="partita_iva" matInput placeholder="Partita IVA">
+        </mat-form-field>
+        <mat-form-field *ngIf="getClientForm().value.type == 2">
+          <input formControlName="first_name" name="first_name" matInput placeholder="Nome">
+        </mat-form-field>
+        <mat-form-field *ngIf="getClientForm().value.type == 2">
+          <input formControlName="last_name" name="last_name" matInput placeholder="Cognome">
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="codice_fiscale" name="codice_fiscale" matInput placeholder="Codice Fiscale">
+        </mat-form-field>
+        <mat-form-field *ngIf="getClientForm().value.type == 1">
+          <input formControlName="referent" name="referent" matInput placeholder="Referente">
+        </mat-form-field>
+        <mat-form-field *ngIf="getClientForm().value.type == 2">
+          <input matInput [matDatepicker]="picker" formControlName="birthday" name="birthday" placeholder="Data Di Nascita">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="form-container">
+        <mat-label>Note</mat-label>
+        <mat-form-field>
+          <input formControlName="notes" name="notes" matInput placeholder="Note aggiuntive">
+        </mat-form-field>
+      </div>
+      <div id="div-spinner">
+        <button class="button" mat-raised-button color="warn" type="submit" [disabled]="getClientForm().invalid">
+          Salva
+        </button>
+        <mat-spinner *ngIf="getLoading()" color="primary" [diameter]="80"></mat-spinner>
+      </div>    
+    </form>
+  </div>
+
+
+
+
+

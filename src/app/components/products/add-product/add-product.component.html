@@ -1,0 +1,82 @@
+<app-navbar></app-navbar>
+<div class="page-header flex-container">
+  <h1 class="page-title"> {{getPageTitle()}} </h1>
+</div>
+<div class="table-container">
+  <form [formGroup]="getProductForm()" (ngSubmit)="addProduct()" class="form">
+    <div class="form-container">
+      <mat-label>Prodotto · Articoli</mat-label>
+      <mat-form-field>
+        <input formControlName="code" name="code" matInput placeholder="Codice" required>
+        <mat-error>Devi inserire un valore</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="name" name="name" matInput placeholder="Nome" required>
+        <mat-error>Devi inserire un valore</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="barcode" name="barcode" matInput placeholder="Codice a Barre">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select formControlName="status" name="status" placeholder="Stato" required>
+          <mat-option value="1">Disponibile</mat-option>
+          <mat-option value="2">Non disponibile</mat-option>
+        </mat-select>
+        <mat-error>Devi inserire un valore</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select formControlName="measurement_unit" name="measurement_unit" placeholder="Unità di Misura">
+          <mat-option value="1">Pz (Pezzi)</mat-option>
+          <mat-option value="2">Kg (Kilogrammi)</mat-option>
+          <mat-option value="3">Lt (Litri)</mat-option>
+          <mat-option value="4">n (Numero)</mat-option>
+        </mat-select>
+      </mat-form-field> 
+      <mat-form-field>
+        <input formControlName="stock_minimum_quantity" name="stock_minimum_quantity" matInput placeholder="Quantità Minima Stock">
+      </mat-form-field>
+    </div>
+    <div class="form-container">
+      <mat-label>Listini</mat-label>
+      <mat-form-field hintLabel="Verrà utilizzata quando non ci sono listini associati.">
+        <mat-select placeholder="IVA di default">
+          <mat-option value="1">22% Standard</mat-option>
+          <mat-option value="2">10% Ridotta</mat-option>
+          <mat-option value="3">4% Minima</mat-option>
+          <mat-option value="4">0% Esente</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div> 
+    <div class="form-container">
+      <mat-label>Estensioni Prodotto</mat-label>
+      <mat-form-field>
+        <input matInput placeholder="Capacity">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Pack">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Quantity per pack">
+      </mat-form-field>
+    </div>       
+    <div class="form-container">
+      <mat-label>Note</mat-label>
+      <mat-form-field hintLabel="Questo testo comparirà in documenti o pagine web pubbliche.">
+        <input formControlName="description" name="description" matInput placeholder="Descrizione">
+      </mat-form-field>
+      <mat-form-field hintLabel="Questo testo non comparirà in documenti o pagine web pubbliche.">
+        <input formControlName="notes" name="notes" matInput placeholder="Note aggiuntive">
+      </mat-form-field>
+    </div>
+    <div id="div-spinner">
+      <button class="button" mat-raised-button color="warn" type="submit" [disabled]="getProductForm().invalid">
+        Salva
+      </button>
+      <mat-spinner *ngIf="getLoading()" color="primary" [diameter]="80"></mat-spinner>
+    </div>    
+  </form>
+</div>
+
+
+
+

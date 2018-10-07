@@ -1,0 +1,39 @@
+.button {
+    float: right;
+    font-size: 30px;
+    margin: 20px 0px;
+    padding: 10px 60px;
+    text-transform: uppercase;
+}
+example-headers-align .mat-expansion-panel-header-title, 
+.example-headers-align .mat-expansion-panel-header-description {
+    flex-basis: 0;
+}
+.example-headers-align .mat-expansion-panel-header-description {
+    justify-content: flex-end;
+}
+.first {
+    margin-top: 10px;
+}
+.form {
+    width: 100%;
+}
+.last {
+    margin-bottom: 25px;
+}
+.mat-expansion-panel {
+    background: #fff;
+}
+.mat-form-field {
+    width: 100%;
+}
+mat-label {
+    font-size: 22px;
+    font-weight: bold;
+}
+#div-spinner {
+    margin-top: 20px
+}
+.ng-star-inserted {
+    margin-right: 4px;
+}

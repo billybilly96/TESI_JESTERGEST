@@ -1,0 +1,109 @@
+<app-navbar></app-navbar>
+<div class="page-header flex-container">
+    <h1 class="page-title"> {{getPageTitle()}} </h1>
+</div> 
+<div *ngIf="price_list" class="table-container">
+    <form [formGroup]="getPriceListForm()" (ngSubmit)="updatePriceList()" class="form">
+        <mat-accordion color="primary" class="example-headers-align">
+            <mat-label>Listino Prezzi</mat-label>
+            <mat-expansion-panel hideToggle="true" class="first">
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Codice </mat-panel-title>
+                    <mat-panel-description> {{price_list.code}} </mat-panel-description>
+                </mat-expansion-panel-header>         
+                <mat-form-field>
+                    <input [(ngModel)]="price_list.code" formControlName="code" name="code" matInput placeholder="Codice" required>
+                    <mat-error>Devi inserire un valore!</mat-error>
+                </mat-form-field>
+            </mat-expansion-panel>
+            <mat-expansion-panel hideToggle="true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Nome </mat-panel-title>
+                    <mat-panel-description> {{price_list.name}} </mat-panel-description>
+                </mat-expansion-panel-header>         
+                <mat-form-field>
+                    <input [(ngModel)]="price_list.name" formControlName="name" name="name" matInput placeholder="Nome" required>
+                    <mat-error>Devi inserire un valore!</mat-error>
+                </mat-form-field>
+            </mat-expansion-panel>
+            <mat-expansion-panel hideToggle="true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Tipo prezzo di default </mat-panel-title>
+                    <mat-panel-description> {{price_list.default_price_type}} </mat-panel-description>
+                </mat-expansion-panel-header>         
+                <mat-form-field>
+                    <mat-select [(ngModel)]="price_list.default_price_type" formControlName="default_price_type" name="default_price_type" placeholder="Tipo prezzo di default" required>
+                        <mat-option value="1">Prezzo netto</mat-option>
+                        <mat-option value="2">Prezzo lordo</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <mat-accordion color="primary" class="example-headers-align">
+            <mat-label>Validità</mat-label>
+            <mat-expansion-panel hideToggle="true" class="first">
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Validità </mat-panel-title>
+                    <mat-panel-description> {{price_list.scope}} </mat-panel-description>
+                </mat-expansion-panel-header>         
+                <mat-form-field>
+                    <mat-select [(ngModel)]="price_list.scope" formControlName="scope" name="scope" placeholder="Validità" required>
+                        <mat-option value="1">Ecommerce+Offline</mat-option>
+                        <mat-option value="2">Ecommerce</mat-option>
+                        <mat-option value="3">Offline</mat-option>
+                    </mat-select>
+                    <mat-error>Devi inserire un valore!</mat-error>
+                </mat-form-field>
+            </mat-expansion-panel>
+            <mat-expansion-panel hideToggle="true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Valido da </mat-panel-title>
+                    <mat-panel-description> {{price_list.valid_from}} </mat-panel-description>
+                </mat-expansion-panel-header>
+                <mat-form-field>
+                    <input [(ngModel)]="price_list.valid_from" matInput [matDatepicker]="picker" formControlName="valid_from" name="valid_from" placeholder="Valido da">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi #picker></mat-datepicker>
+                </mat-form-field>
+            </mat-expansion-panel>
+            <mat-expansion-panel hideToggle="true">
+                    <mat-expansion-panel-header>
+                    <mat-panel-title> Valido fino a </mat-panel-title>
+                    <mat-panel-description> {{price_list.valid_to}} </mat-panel-description>
+                </mat-expansion-panel-header>
+                <mat-form-field>
+                    <input [(ngModel)]="price_list.valid_to" matInput [matDatepicker]="picker2" formControlName="valid_to" name="valid_to" placeholder="Valido fino a">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi #picker2></mat-datepicker>
+                </mat-form-field>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <mat-accordion color="primary" class="example-headers-align">
+            <mat-label>Note</mat-label>
+            <mat-expansion-panel hideToggle="true" class="first">
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Descrizione </mat-panel-title>
+                    <mat-panel-description> {{price_list.description}} </mat-panel-description>
+                </mat-expansion-panel-header>         
+                <mat-form-field>
+                    <input [(ngModel)]="price_list.description" formControlName="description" name="description" matInput placeholder="Descrizione">             
+                </mat-form-field>
+            </mat-expansion-panel>
+            <mat-expansion-panel hideToggle="true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Note aggiuntive </mat-panel-title>
+                    <mat-panel-description> {{price_list.notes}} </mat-panel-description>
+                </mat-expansion-panel-header>         
+                <mat-form-field>
+                    <input [(ngModel)]="price_list.notes" formControlName="notes" name="notes" matInput placeholder="Note aggiuntive">             
+                </mat-form-field>
+            </mat-expansion-panel>   
+            <div id="div-spinner">
+                <button mat-raised-button color="warn" type="submit" [disabled]="getPriceListForm().invalid" class="button">
+                Salva
+                </button>
+                <mat-spinner *ngIf="getLoading()" color="primary" [diameter]="80"></mat-spinner>
+            </div>            
+        </mat-accordion>
+    </form>
+</div>

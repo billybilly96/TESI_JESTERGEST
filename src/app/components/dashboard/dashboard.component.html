@@ -1,0 +1,43 @@
+<app-navbar></app-navbar>
+<div class="page-header flex-container">
+  <h1 class="page-title"> {{getPageTitle()}} </h1>
+</div>
+<div class="table-container">
+  <div id="shortcut"> <h2>Scorciatoie: </h2> 
+    <button mat-button>
+      <a mat-raised-button color="primary" class="btn-go-create" routerLink="/products/add">
+        <i class="material-icons">add</i> Prodotto
+      </a>
+    </button>
+    <button mat-button>
+      <a mat-raised-button color="primary" class="btn-go-create"  routerLink="/clients/add">
+        <i class="material-icons">add</i> Cliente
+      </a>
+    </button>
+    <button mat-button>
+      <a mat-raised-button color="primary" class="btn-go-create"  routerLink="/price-lists/add">
+        <i class="material-icons">add</i> Listino
+      </a>
+    </button>
+  </div>
+</div>
+<div class="table-container">
+  <mat-toolbar class="mat-elevation-z8">
+    <mat-card class="mat-elevation-z8">--
+      <mat-card-subtitle>Fatturato netto 2018</mat-card-subtitle>
+    </mat-card>
+    <mat-card class="mat-elevation-z8">--
+      <mat-card-subtitle>Costi Totali 2018</mat-card-subtitle>
+    </mat-card>
+    <mat-card class="mat-elevation-z8">--
+      <mat-card-subtitle>Utile d’esercizio 2018</mat-card-subtitle>
+    </mat-card>
+    <mat-card class="mat-elevation-z8">--
+      <mat-card-subtitle>Crediti verso Clienti</mat-card-subtitle>
+    </mat-card>
+    <mat-card class="mat-elevation-z8">--
+      <mat-card-subtitle>Debiti verso Fornitori</mat-card-subtitle>
+    </mat-card>
+  </mat-toolbar> 
+</div>
+
