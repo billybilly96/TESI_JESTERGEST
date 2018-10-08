@@ -17,20 +17,20 @@ import { EditPriceListComponent } from './components/price_lists/edit-price-list
 import { AuthGuard } from './utilities/auth-guard';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent,  },
+  { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginUsersComponent },
-  { path: 'clients', component: HomeClientsComponent,  },
-  { path: 'clients/view/:id', component: ViewClientComponent,  },
-  { path: 'clients/add', component: AddClientComponent,  },
-  { path: 'clients/edit/:id', component: EditClientComponent,  },
-  { path: 'products', component: HomeProductsComponent,  },
-  { path: 'products/view/:id', component: ViewProductComponent,  },
-  { path: 'products/add', component: AddProductComponent,  },
-  { path: 'products/edit/:id', component: EditProductComponent,  },
-  { path: 'price-lists', component: PriceListsComponent,  },
-  { path: 'price-lists/add', component: AddPriceListComponent,  },
-  { path: 'price-lists/view/:id', component: ViewPriceListComponent,  },
-  { path: 'price-lists/edit/:id', component: EditPriceListComponent,  },
+  { path: 'clients', component: HomeClientsComponent, canActivate: [AuthGuard] },
+  { path: 'clients/view/:id', component: ViewClientComponent, canActivate: [AuthGuard] },
+  { path: 'clients/add', component: AddClientComponent, canActivate: [AuthGuard] },
+  { path: 'clients/edit/:id', component: EditClientComponent, canActivate: [AuthGuard] },
+  { path: 'products', component: HomeProductsComponent, canActivate: [AuthGuard] },
+  { path: 'products/view/:id', component: ViewProductComponent, canActivate: [AuthGuard] },
+  { path: 'products/add', component: AddProductComponent, canActivate: [AuthGuard] },
+  { path: 'products/edit/:id', component: EditProductComponent, canActivate: [AuthGuard] },
+  { path: 'price-lists', component: PriceListsComponent, canActivate: [AuthGuard] },
+  { path: 'price-lists/add', component: AddPriceListComponent, canActivate: [AuthGuard] },
+  { path: 'price-lists/view/:id', component: ViewPriceListComponent, canActivate: [AuthGuard] },
+  { path: 'price-lists/edit/:id', component: EditPriceListComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '' }
 ];
 

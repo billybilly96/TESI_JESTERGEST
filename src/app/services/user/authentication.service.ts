@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { MatSnackBar } from "@angular/material";
+import { User } from '../../classes/users/user';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +12,13 @@ export class AuthenticationService {
   private url_login: string = "http://localhost/angular-jestergest-new/login.json";
   private url_token: string = "http://localhost/angular-jestergest-new/dashboard/csrf-token.json";
   private isUserLogged: boolean = false;
-  private HTTP_OPTIONS = {};
+  private http_options = {};
+  private loading: boolean = false;
+  private timer: number = 6000;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    public snackbar: MatSnackBar
   ) {}
 
   /** Metodo che scarica il csrf-token prodotto dal server per la corretta autenticazione. */
@@ -34,20 +39,26 @@ export class AuthenticationService {
    * @param user 
    */
   login(user, token): Observable<any> {
-    console.log("Dati di autenticazione inviati al server...")
-    this.HTTP_OPTIONS = {
-      // 'Content-Type': 'application/x-www-form-urlencoded'
+    console.log("Dati di autenticazione inviati al server...", user);
+    this.http_options = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json', 'X-CSRF-Token': token }),
       withCredentials: true
     };
-    return this.http.post<any>(this.url_login, user, this.HTTP_OPTIONS).pipe(map(data => {
-          console.log("Ai sem?")
+    this.loading = true;
+    return this.http.post<any>(this.url_login, user, this.http_options).pipe(map(data => {
           console.log(data);
-          if (data.authUser != null) {
+          if (data.data != null) {
+            this.loading = false;
             this.isUserLogged = true;
             sessionStorage.setItem('currentUser', JSON.stringify(user.email));
             return user.email;
-        }
+          } else {
+            this.loading = false;
+            this.snackbar.open("USERNAME O PASSWORD NON VALIDI!","", {
+              duration: this.timer,
+              panelClass: ['blue-snackbar']
+            });
+          }
     }));
   }
 }

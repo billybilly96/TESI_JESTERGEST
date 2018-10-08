@@ -32,5 +32,5 @@ export class FacadeService {
     return this._priceListsService;
   }
 
-  constructor(private injector: Injector) { }
+  constructor(private injector: Injector) {}
 }

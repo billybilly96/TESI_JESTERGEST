@@ -32,6 +32,7 @@ import { PriceListsService } from './services/price_lists/price-lists.service';
 import { IndexedDBService } from './services/db/indexed-db.service';
 import { AuthenticationService } from './services/user/authentication.service';
 import { FacadeService } from './services/FacadeService/facade.service';
+import { AuthGuard } from './utilities/auth-guard';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { FacadeService } from './services/FacadeService/facade.service';
     PriceListsService,
     IndexedDBService,
     AuthenticationService,
-    FacadeService
+    FacadeService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

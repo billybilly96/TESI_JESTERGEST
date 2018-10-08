@@ -46,11 +46,15 @@ export class LoginUsersComponent implements OnInit {
   login(): void {
     this.authService.login(this.login_form.value, this.token)
       .subscribe(
-        next => {
-          console.log("next");
+        response => {
+          console.log(response, 
+            this.login_form.value);
           if (this.authService.checkIfUserIsLogged()) {
             this.router.navigate([this.returnUrl]);
           }
+        },
+        error => {
+          console.log(error);
         }
       );
   }
@@ -65,7 +69,7 @@ export class LoginUsersComponent implements OnInit {
   ngOnInit(): void {
     this.titleService.setTitle("Login | Mazapégul");
     this.checkToken();
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/products';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
   }
 
 }
